@@ -1,15 +1,23 @@
 {
-    "name": "C++ Dev Container",
+    "name": "OpenGL Dev Container",
     "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--env", "DISPLAY=host.docker.internal:0",
+        "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+        "--env", "LIBGL_ALWAYS_INDIRECT=1"
+    ],
+    "workspaceFolder": "/workspaces/visualiser",
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vscode.cpptools"
-            ],
-            "settings": {
-                "terminal.integrated.shell.linux": "/bin/bash"
-            }
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "twxs.cmake",
+                "ms-vscode.cmake-tools",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode.makefile-tools"
+            ]
         }
     },
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake gdb"
+    "postCreateCommand": ".devcontainer/setup.sh"
 }

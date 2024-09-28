@@ -1,15 +1,25 @@
 # Use an official Ubuntu base image
 FROM ubuntu:22.04
 
-# Install system dependencies and ensure 'sudo' can be installed
+# Install essential tools and OpenGL dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
     gdb \
-    clang-format \
+    libgl1-mesa-dev \
+    libx11-dev \
+    libxi-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libglfw3-dev \
+    libglew-dev \
+    sudo \
     git \
-    sudo && \
-    rm -rf /var/lib/apt/lists/*
+    pkg-config  # Add pkg-config here
+
+# Create the sudoers directory if it doesn't exist
+RUN mkdir -p /etc/sudoers.d
 
 # Set up a non-root user for development
 ARG USERNAME=damian
@@ -21,5 +31,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-# Switch to the non-root user
 USER $USERNAME
+
+# Set up the working directory
+WORKDIR /workspaces/visualizer
