@@ -31,6 +31,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Allow SSH agent forwarding
+RUN apt-get install -y openssh-client
+
 USER $USERNAME
 
 # Set up the working directory

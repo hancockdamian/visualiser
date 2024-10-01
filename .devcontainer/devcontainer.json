@@ -2,9 +2,14 @@
     "name": "OpenGL Dev Container",
     "dockerFile": "Dockerfile",
     "runArgs": [
-        "--env", "DISPLAY=host.docker.internal:0",
-        "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
-        "--env", "LIBGL_ALWAYS_INDIRECT=1"
+        "--env",
+        "DISPLAY=host.docker.internal:0",
+        "--volume",
+        "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+        "--env",
+        "LIBGL_ALWAYS_INDIRECT=1",
+        "--mount",
+        "type=bind,source=/run/host-services/ssh-auth.sock,target=/ssh-agent"
     ],
     "workspaceFolder": "/workspaces/visualiser",
     "customizations": {
@@ -18,6 +23,10 @@
                 "ms-vscode.makefile-tools"
             ]
         }
+    },
+    "remoteUser": "damian",
+    "containerEnv": {
+        "SSH_AUTH_SOCK": "/ssh-agent"
     },
     "postCreateCommand": ".devcontainer/setup.sh"
 }
