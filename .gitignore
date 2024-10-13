@@ -1,32 +1,21 @@
-# Prerequisites
-*.d
+node_modules
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Output
+.output
+.vercel
+/.svelte-kit
+/build
 
-# Precompiled Headers
-*.gch
-*.pch
+# OS
+.DS_Store
+Thumbs.db
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

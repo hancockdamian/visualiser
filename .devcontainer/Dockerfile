@@ -1,25 +1,15 @@
-# Use an official Ubuntu base image
-FROM ubuntu:22.04
+# Use the official Microsoft JavaScript/Node.js DevContainer image as the base
+FROM mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm
 
-# Install system dependencies and ensure 'sudo' can be installed
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    gdb \
-    clang-format \
-    git \
-    sudo && \
-    rm -rf /var/lib/apt/lists/*
+# Set working directory inside the container
+WORKDIR /workspaces/visualiser
 
-# Set up a non-root user for development
-ARG USERNAME=damian
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
+# Install any additional tools or dependencies here (e.g., git, curl, etc.)
+# Example:
+# RUN apt-get update && apt-get install -y vim
 
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
+# Ensure the container uses the latest version of npm globally
+RUN npm install -g npm@latest
 
-# Switch to the non-root user
-USER $USERNAME
+# Expose the port used by the Svelte development server (default: 5173)
+EXPOSE 5173
