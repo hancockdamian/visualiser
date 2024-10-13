@@ -1,20 +1,20 @@
 {
 	"name": "visualiser",
 	"build": {
-	  "dockerfile": "Dockerfile"
+		"dockerfile": "Dockerfile"
 	},
 	"workspaceFolder": "/workspaces/visualiser",
 	"customizations": {
-	  "vscode": {
-		"extensions": [
-			"svelte.svelte-vscode",
-			"dbaeumer.vscode-eslint",
-			"esbenp.prettier-vscode",
-			"eamodio.gitlens",
-			"ms-azuretools.vscode-docker"
-		]
-	  }
+		"vscode": {
+			"extensions": [
+				"svelte.svelte-vscode",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"eamodio.gitlens",
+				"ms-azuretools.vscode-docker"
+			]
+		}
 	},
-	"forwardPorts": [5173]
+	"forwardPorts": [5173],
+	"runArgs": ["--network", "host"]
 }
-  
