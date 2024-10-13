@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Visualiser from '../components/Visualiser.svelte';
+</script>
+
+<main>
+    <h1>Visualiser Page</h1>
+    <Visualiser />
+</main>
+
+<style>
+    main {
+        text-align: center;
+        padding: 1em;
+        max-width: 600px;
+        margin: auto;
+    }
+</style>
