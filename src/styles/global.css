@@ -1,0 +1,16 @@
+/* src/styles/global.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fef1dd;
+}
+
+main {
+    text-align: center;
+    padding: 1em;
+    max-width: 100%;
+    margin: auto;
+    min-height: 100vh;
+}
